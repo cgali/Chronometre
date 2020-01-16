@@ -1,38 +1,43 @@
 /* Done with CLASS and METHOD but without linked with the HTML and CSS document */
 
-let time;
+
 
 class Chrono {
     constructor() {
         this.counterSec = 0;
         this.counterMin = 0;
-        this.counterHour = 0;
-    };
+        this.interID = 0;
+    }
 
     start() {
-        time = setInterval(() => {        //we are saying that setInterval is a var with the name "chrono
-                if (this.counterSec === 60) {    //conditions to pass seconds to minutes and reset seconds if pass 60sec
-                        this.counterMin ++;
-                        this.counterSec = 0;
-                    if (this.counterMin === 60) {    //conditions to reset minutes if pass 60min and pass minutes to hours
-                        this.counterHour ++;
-                        this.counterMin = 0;
-                        if (this.counterHour === 24) {    //conditions to reset hours if it pass 24hours
-                            this.counterHour = 0;
-                        }
-                    }
-                }
-               
-                this.counterSec ++;     //the initialization of the chrono
+       this.interID = setInterval(() => {        //we are saying that setInterval is a var with the name "chrono
+            console.log(this.counterMin, this.counterSec);
+            this.counterSec ++;     //the initialization of the chrono
+            if (this.counterSec === 60) {    //conditions to pass seconds to minutes and reset seconds if pass 60sec
+                this.counterMin ++;
+                this.counterSec = 0;
+            }      
         }, 1000);   //every second this function is executed
-    };
+    }
 
     stop() {
-        clearInterval(time);  //function to stop the chrono (setInterval)
-        };
+        clearInterval(this.interID);  //function to stop the chrono (setInterval)
+    };
+
+    reset() {
+        clearInterval(this.interID);
+        this.counterSec = 0;
+        this.counterMin = 0;
+        time.start();
+    }
+
+    showTime() {
+        alert(`Min: ${this.counterMin} and sec: ${this.counterSec}`);
+    }
 }
 
-
+let time = new Chrono();
+time.start();
 
 /* Done with FUNCTIONS and linked with the HTML and CSS document */
 
