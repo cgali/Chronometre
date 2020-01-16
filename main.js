@@ -14,6 +14,7 @@ class Chrono {
 
         this.interID = setInterval(() => {        
             console.log(this.counterMin, this.counterSec);
+            document.getElementById("start-button").disabled = true;
             this.counterSec ++;     
             if (this.counterSec === 60) {    
                 this.counterMin ++;
@@ -33,7 +34,8 @@ class Chrono {
     }
 
     stop() {
-        clearInterval(this.interID);  
+        clearInterval(this.interID);
+        document.getElementById("start-button").disabled = false;
     };
 
     reset() {
